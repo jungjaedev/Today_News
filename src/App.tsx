@@ -1,10 +1,16 @@
 import React from 'react';
+import { Routes, Route } from "react-router-dom"
+import Main from './Pages/Main';
+import Container from './Structure/Container';
+
 
 const App = () => {
   return (
-    <div>
-      <p>Hello world</p>
-    </div>
+    <Container>
+      <Routes>
+        <Route index element={<Main />} />
+      </Routes>
+    </Container>
   )
 }
 
