@@ -1,31 +1,41 @@
 import React from 'react'
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { currentComponent } from "../../data/manager"
 
 const ArticleItem = ({ article }: any ) => {
-  const handleClick = () => {
+  const current = useSelector(currentComponent)
+
+  const handleOpenNewTab = () => {
     window.open(`${article.url}`,'_black')
   }
 
   const handleFavorite = () => {
-    console.log('favorite')
+    console.log('favorite');
+  }
+
+  const handleEdit = () => {
+    console.log('edit');
   }
 
   return (
     <Wrapper>
       <ThumbNailWrapper>
-        <ThumbNail onClick={handleClick} src={article.urlToImage} alt="thumbNail" />
+        <ThumbNail onClick={handleOpenNewTab} src={article.urlToImage === null ? require("../../assets/no_image.png") : article.urlToImage } alt="thumbNail" />
       </ThumbNailWrapper>
       <MainText>
-        <Title onClick={handleClick}>{article.title}</Title>
-        <Content onClick={handleClick}>{article.content.slice(0,-14)}</Content>
+        <Title onClick={handleOpenNewTab}>{article.title}</Title>
+        <Content onClick={handleOpenNewTab}>{article.content === null ? article.description : article.content.slice(0,-14)}</Content>
+        {/* <Content onClick={handleOpenNewTab}>{article.description}</Content> */}
         <Footer>
           <ContentInfo>
             <Author>{article.author}</Author>
             <Date>{article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
           </ContentInfo>
-          <Favorite>
-            <FavoriteIcon onClick={handleFavorite} src={require("../../assets/favorite.png")} />
-          </Favorite>
+          <ToolButtons>
+            {current === "favorite" ? <Editicon onClick={handleEdit} src={require("../../assets/edit.png")} /> : null}
+            <FavoriteIcon onClick={handleFavorite} src={require("../../assets/favoriteEmpty.png")} />
+          </ToolButtons>
         </Footer>
       </MainText>
     </Wrapper>
@@ -48,7 +58,7 @@ const ThumbNailWrapper = styled.div`
 
 const ThumbNail = styled.img`
   height: 10rem;
-
+  width: 15rem;
   &:hover {
     cursor: pointer;
   }
@@ -88,23 +98,29 @@ const Content = styled.div`
 
 const Author = styled.div`
   color:  ${({ theme }) => theme.lightBlue};
+  margin-right: 0.5rem;
 `
 
 const Date = styled.div`
-  margin-left: 0.5rem;
 `
 
-const Favorite = styled.div`
+const ToolButtons = styled.div`
   &:hover {
     cursor: pointer;
   }
 `
 
 const FavoriteIcon = styled.img`
-  width: 1rem;
+  width: 1.5rem;
+`
+
+const Editicon = styled.img`
+  width: 1.5rem;
+  margin: 0 1rem;
 `
 
 const ContentInfo = styled.div`
   display:flex;
+  font-size: 0.9rem;
 `
 export default ArticleItem

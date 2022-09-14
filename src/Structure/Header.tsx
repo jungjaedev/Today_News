@@ -1,30 +1,51 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import styled from "styled-components";
+import { updateCurrentComponentAction } from '../data/manager';
+import Modal from "../Components/Modal/Modal";
+import Portal from "../Components/Modal/Portal";
+
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [modal, setModal] = useState(false)
   const handleMoveHome = () => {
     navigate("/");
+    dispatch(updateCurrentComponentAction("search"))
   };
 
   const handleFavorite = () => {
+    dispatch(updateCurrentComponentAction("favorite"))
     console.log('즐찾');
   }
 
   const handleLogin = () => {
-    console.log('로긴');
+    setModal(true)
+  }
+
+  const closeModal = () => {
+    setModal(false);
   }
 
   return (
-    <Wrapper>
-      <LogoWrapper>
-        <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
-      </LogoWrapper>
-      <Buttons>
-        <Button onClick={handleFavorite}>즐겨찾기</Button>
-        <Button onClick={handleLogin}>로그인</Button>
-      </Buttons>
-    </Wrapper>
+    <>
+      {modal && (
+        <Portal selector='#modal'>
+          <Modal handleModal={closeModal} />
+        </Portal>
+      )}
+      <Wrapper>
+        <LogoWrapper>
+          <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
+        </LogoWrapper>
+        <Buttons>
+          <Button onClick={handleFavorite}>즐겨찾기</Button>
+          <Button onClick={handleLogin}>로그인</Button>
+        </Buttons>
+      </Wrapper>
+    </>
   )
 }
 

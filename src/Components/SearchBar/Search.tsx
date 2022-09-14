@@ -1,19 +1,31 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import styled from "styled-components";
+import { updateSearchValue, getArticleListFuction } from '../../data/article';
+import { updateIsSearchAction } from '../../data/manager'
+
 
 const Search = () => {
+  const dispatch = useDispatch();
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    dispatch(updateSearchValue(e.target.value))
   }
 
   const handleClick = () => {
-    console.log('search')
+    dispatch(updateIsSearchAction(true));
+    dispatch(getArticleListFuction() as any);
+  }
+
+  const handleKeyPress = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      handleClick();
+    }
   }
 
   return (
     <Wrapper>
-      <SearchInput onChange={e => handleChange(e)} type="text" />
-      <SearchImg onClick={handleClick} src={require("../../assets/search.png")} alt="search" />
+      <SearchInput onKeyPress={(e)=> handleKeyPress(e)} placeholder="검색어를 입력하세요." onChange={e => handleChange(e)} type="text" />
+      <SearchImg  onClick={handleClick} src={require("../../assets/search.png")} alt="search" />
     </Wrapper>
   )
 }

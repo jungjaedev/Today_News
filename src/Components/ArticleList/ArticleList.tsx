@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
 import ArticleItem from './ArticleItem'
+import { getArticleListFuction, selectedFilter, searchValue, articleList } from '../../data/article';
+import { currentComponent } from '../../data/manager'
+
 
 interface articleDataProps {
   author: string,
@@ -12,26 +15,22 @@ interface articleDataProps {
   publishedAt: string,
   content: string
 }
-// key: 195f743d0a9c4b149ea6c902992bd9ad
+
 const ArticleList = () => {
-  const [articleData, setArticleData] = useState<articleDataProps[]>();
+  const dispatch = useDispatch();
+  const articles = useSelector(articleList);
 
   useEffect(() => {
-    axios.get<any>('https://newsapi.org/v2/everything', 
-    { params : {
-        apiKey:'195f743d0a9c4b149ea6c902992bd9ad',
-        q:'health',
-      }
-    }).then(res => {
-      setArticleData(res.data.articles)
-    });
+    dispatch(getArticleListFuction() as any)
   }, [])
+
   return (
     <Wrapper>
-      {articleData ? 
-      articleData.map((article) => {
+      <div>한국 헤드라인</div>
+      {articles ? 
+      articles.map((article : articleDataProps) => {
         return (
-          <ArticleItem article={article} />
+          <ArticleItem key={article.title} article={article} />
         )
     }) : null}
     </Wrapper>

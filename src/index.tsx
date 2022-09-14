@@ -8,7 +8,6 @@ import { ColorTheme } from "./Theme/ColorTheme";
 import { Provider } from 'react-redux';
 import { store } from './data/store'
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
