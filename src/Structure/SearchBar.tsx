@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-import Search from "../Components/Search"
-import SortButtons from "../Components/SortButtons"
+import Search from "../Components/SearchBar/Search"
+import SortButtons from "../Components/SearchBar/SortButtons"
 
 const SearchBar = () => {
   return (

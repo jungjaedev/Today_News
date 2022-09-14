@@ -30,7 +30,7 @@ const Body = styled.div`
   display: flex;
   padding-top: 16px;
   padding-bottom: 20px;
-  background-color: yellow;
+  align-self: center;
 `
 
 export default Container;

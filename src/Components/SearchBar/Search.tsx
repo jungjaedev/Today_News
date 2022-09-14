@@ -13,7 +13,7 @@ const Search = () => {
   return (
     <Wrapper>
       <SearchInput onChange={e => handleChange(e)} type="text" />
-      <SearchImg onClick={handleClick} src={require("../assets/search.png")} alt="search" />
+      <SearchImg onClick={handleClick} src={require("../../assets/search.png")} alt="search" />
     </Wrapper>
   )
 }
