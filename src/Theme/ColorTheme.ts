@@ -10,4 +10,5 @@ export const ColorTheme = {
   lightGrey: '#EBEBEB',
   lightBlue: '#5D95BB',
   grey: '#696969',
+  yellow: '#F1DC92'
 };

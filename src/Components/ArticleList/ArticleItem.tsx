@@ -6,6 +6,10 @@ const ArticleItem = ({ article }: any ) => {
     window.open(`${article.url}`,'_black')
   }
 
+  const handleFavorite = () => {
+    console.log('favorite')
+  }
+
   return (
     <Wrapper>
       <ThumbNailWrapper>
@@ -14,10 +18,15 @@ const ArticleItem = ({ article }: any ) => {
       <MainText>
         <Title onClick={handleClick}>{article.title}</Title>
         <Content onClick={handleClick}>{article.content.slice(0,-14)}</Content>
-        <ContentInfo>
-          <Author>{article.author}</Author>
-          <Date>{article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
-        </ContentInfo>
+        <Footer>
+          <ContentInfo>
+            <Author>{article.author}</Author>
+            <Date>{article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
+          </ContentInfo>
+          <Favorite>
+            <FavoriteIcon onClick={handleFavorite} src={require("../../assets/favorite.png")} />
+          </Favorite>
+        </Footer>
       </MainText>
     </Wrapper>
   )
@@ -49,11 +58,12 @@ const MainText = styled.div`
   flex-direction: column;
 `
 
-const ContentInfo = styled.div`
+const Footer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 0.5rem;
   font-weight: 500;
+  justify-content: space-between;
 `
 
 const Title = styled.div`
@@ -84,5 +94,17 @@ const Date = styled.div`
   margin-left: 0.5rem;
 `
 
+const Favorite = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`
 
+const FavoriteIcon = styled.img`
+  width: 1rem;
+`
+
+const ContentInfo = styled.div`
+  display:flex;
+`
 export default ArticleItem
