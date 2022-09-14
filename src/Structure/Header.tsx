@@ -17,7 +17,9 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
+      <LogoWrapper>
+        <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
+      </LogoWrapper>
       <Buttons>
         <Button onClick={handleFavorite}>즐겨찾기</Button>
         <Button onClick={handleLogin}>로그인</Button>
@@ -29,14 +31,21 @@ const Header = () => {
 const Wrapper = styled.div`
   display: flex;
   position: relative;
-  justify-content: center;
-  align-items: center;
   height: 5rem;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
 `;
 
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+`
+
 const Logo = styled.img`
-  width: 200px;
+  /* width: 12rem;
+  height: 6rem; */
   cursor: pointer;
 `;
 

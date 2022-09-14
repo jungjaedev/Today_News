@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     min-height: 100vh;
     cursor: default;
+    font-weight: 600;
   }
 
   body {

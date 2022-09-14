@@ -11,5 +11,6 @@ declare module "styled-components" {
     disabled: string,
     white: string,
     background: string,
+    lightGreen: string,
   }
 }

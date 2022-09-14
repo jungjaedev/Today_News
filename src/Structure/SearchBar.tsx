@@ -13,11 +13,11 @@ const SearchBar = () => {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin: 1rem 0 2rem;
   justify-content: center;
   align-items: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 `
 
 

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const article = createSlice({
   name: 'article',
   initialState: {
-    // isWriting: false,
+    articleList: [],
   },
   reducers: {
     // updateModalAction: (state, action) => {

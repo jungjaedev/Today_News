@@ -28,8 +28,6 @@ const Constainer = styled.div`
 
 const Body = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 16px;
   padding-bottom: 20px;
   background-color: yellow;

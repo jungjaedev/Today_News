@@ -8,4 +8,5 @@ export const ColorTheme = {
   disabled: '#D8D8D8',
   white: '#FFFFFF',
   background: '#FFFFFF',
+  lightGreen: '#3AED6D',
 };

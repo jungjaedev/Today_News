@@ -17,10 +17,7 @@ const SortButtons = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  position: absolute;
   margin-left: 1rem;
-  left: 0;
-  bottom: 0;
 `
 
 const Button = styled.div`
@@ -31,7 +28,7 @@ const Button = styled.div`
   padding: 0.7rem 0.5rem 0.5rem;
 
   &:hover {
-    background-color: green;
+    background-color: ${({ theme }) => theme.lightGreen};
   }
 
 `
