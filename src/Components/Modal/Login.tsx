@@ -1,15 +1,32 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
+import { updateloginInfoAction, loginInfo } from '../../data/user';
+import { validation } from '../../data/manager';
+import { validateLogin } from '../../lib/validate';
 
 interface LoginProps {
   handleModal: () => void
 }
 
-const Login = ({handleModal}: LoginProps) => {
+interface ValidationProps {
+  checkValidation: string;
+}
 
-  const handleLogin = () => {
-    console.log('sign in');
+const Login = ({handleModal}: LoginProps) => {
+  const dispatch = useDispatch();
+  const userInfo = useSelector(loginInfo);
+  const checkValidation = useSelector(validation);
+  const handleSignInClick = () => {
+    validateLogin(userInfo, handleModal);
   }
+
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>, key : string) => {
+    const loginUser = { ...userInfo };
+    loginUser[key] = e.target.value;
+    dispatch(updateloginInfoAction(loginUser));
+  }
+
   return (
     <Wrapper>
       <CloseWrapper>
@@ -20,23 +37,33 @@ const Login = ({handleModal}: LoginProps) => {
       </ImageWrapper>
       <Inputs>      
         <InputWrapper>
-            <Input placeholder='Account' type="text" />
+            <Input onChange={(e) => handleChange(e, "account")} placeholder='Account' type="text" />
         </InputWrapper>
         <InputWrapper>
-            <Input placeholder='Password' type="password" />
+            <Input onChange={(e) => handleChange(e, "password")} placeholder='Password' type="password" />
         </InputWrapper>
+        <Validation checkValidation={checkValidation.toString()}>아이디, 비밀번호를 다시 확인해 주시기 바랍니다.</Validation>
         <ButtonWrapper>
-          <LoginButton onClick={handleLogin}>Sign in</LoginButton>
+          <LoginButton onClick={handleSignInClick}>Sign in</LoginButton>
         </ButtonWrapper>
       </Inputs>
     </Wrapper>
   )
 }
 
+const Validation = styled.div<ValidationProps>`
+  margin: 0.5rem 0;
+  font-weight: 400;
+  color: ${({ theme }) => theme.darkgrey};
+
+  ${({ checkValidation }) => {
+    return checkValidation === 'true' && `opacity: 0`;
+  }}
+`
+
 const CloseWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-
 `
 
 const CloseImg = styled.img`
@@ -73,7 +100,6 @@ const LoginButton = styled.button`
 const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  /* margin-top: 1rem; */
 `
 
 const Img = styled.img`

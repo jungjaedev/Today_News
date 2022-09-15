@@ -2,8 +2,25 @@ import React from 'react'
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { currentComponent } from "../../data/manager"
+import { setArticleList } from '../../lib/local-storage';
 
-const ArticleItem = ({ article }: any ) => {
+
+interface articleDataProps {
+  author: string,
+  title: string,
+  description: string,
+  url: string,
+  urlToImage: string,
+  publishedAt: string,
+  content: string
+}
+
+interface ArticleItemProps {
+  key: string;
+  article: articleDataProps;
+}
+
+const ArticleItem = ({ key , article }: ArticleItemProps ) => {
   const current = useSelector(currentComponent)
 
   const handleOpenNewTab = () => {
@@ -12,6 +29,7 @@ const ArticleItem = ({ article }: any ) => {
 
   const handleFavorite = () => {
     console.log('favorite');
+    setArticleList(article);
   }
 
   const handleEdit = () => {
@@ -26,7 +44,6 @@ const ArticleItem = ({ article }: any ) => {
       <MainText>
         <Title onClick={handleOpenNewTab}>{article.title}</Title>
         <Content onClick={handleOpenNewTab}>{article.content === null ? article.description : article.content.slice(0,-14)}</Content>
-        {/* <Content onClick={handleOpenNewTab}>{article.description}</Content> */}
         <Footer>
           <ContentInfo>
             <Author>{article.author}</Author>

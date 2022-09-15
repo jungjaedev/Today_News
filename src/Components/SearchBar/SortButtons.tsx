@@ -24,7 +24,6 @@ const SortButtons = () => {
   }
 
   return (
-    // <Wrapper>
     <Wrapper  searchOn={searchOn.toString()}>
       <Button filter={(filter.toString() === "popularity").toString()} searchOn={searchOn.toString()} onClick={() => handleSort("popularity")}>인기 출처순</Button>
       <Button filter={(filter.toString() === "recent").toString()} searchOn={searchOn.toString()} onClick={() => handleSort("recent")}>최신순</Button>
@@ -55,7 +54,7 @@ const Button = styled.div<ButtonProps>`
   }}
   
   &:hover {
-    background-color: ${({ theme }) => theme.lightGreen};
+    transform: scale(1.1);
   }
 `
 

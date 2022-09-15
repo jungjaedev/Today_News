@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
-import { updateCurrentComponentAction, updateIsSearchAction } from '../data/manager';
+import { updateCurrentComponentAction, updateIsSearchAction, updateValidationAction } from '../data/manager';
 import { updateSearchValue } from '../data/article';
+import { isLogin } from '../data/user';
 import Modal from "../Components/Modal/Modal";
 import Portal from "../Components/Modal/Portal";
+import { LogoutFunction } from '../lib/validate';
 
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loginCheck = useSelector(isLogin);
   const [modal, setModal] = useState(false)
   const handleMoveHome = () => {
     navigate("/");
@@ -19,17 +22,24 @@ const Header = () => {
     dispatch(updateSearchValue(''));
   };
 
+
   const handleFavorite = () => {
     dispatch(updateCurrentComponentAction("favorite"))
     console.log('즐찾');
   }
 
   const handleLogin = () => {
-    setModal(true)
+    setModal(true);
+    dispatch(updateValidationAction(true));
+  }
+
+  const handleLogout = () => {
+    LogoutFunction();
   }
 
   const closeModal = () => {
     setModal(false);
+    dispatch(updateValidationAction(true));
   }
 
   return (
@@ -45,7 +55,12 @@ const Header = () => {
         </LogoWrapper>
         <Buttons>
           <Button onClick={handleFavorite}>즐겨찾기</Button>
-          <Button onClick={handleLogin}>로그인</Button>
+          { loginCheck 
+            ? <Button onClick={handleLogout}>로그아웃</Button> 
+            : <Button onClick={handleLogin}>로그인</Button> 
+          }
+          
+          
         </Buttons>
       </Wrapper>
     </>
@@ -68,8 +83,6 @@ const LogoWrapper = styled.div`
 `
 
 const Logo = styled.img`
-  /* width: 12rem;
-  height: 6rem; */
   cursor: pointer;
 `;
 

@@ -5,6 +5,7 @@ export const manager = createSlice({
   initialState: {
     currentComponent: 'search',
     isSearch: false,
+    validation: true,
   },
   reducers: {
     updateCurrentComponentAction: (state, action) => {
@@ -13,12 +14,16 @@ export const manager = createSlice({
     updateIsSearchAction: (state, action) => {
       state.isSearch = action.payload;
     },
+    updateValidationAction: (state, action) => {
+      state.validation = action.payload;
+    },
   },
 });
 
-export const { updateCurrentComponentAction, updateIsSearchAction } = manager.actions;
+export const { updateCurrentComponentAction, updateIsSearchAction, updateValidationAction } = manager.actions;
 
 export const currentComponent = state => state.manager.currentComponent;
 export const isSearch = state => state.manager.isSearch;
+export const validation = state => state.manager.validation;
 
 export default manager.reducer;

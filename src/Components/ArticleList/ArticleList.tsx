@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ArticleItem from './ArticleItem'
 import { getArticleListFuction, resultnum, articleList } from '../../data/article';
 import { isSearch } from '../../data/manager';
+import uuid from 'react-uuid';
 
 
 interface articleDataProps {
@@ -33,7 +34,7 @@ const ArticleList = () => {
       {articles ? 
       articles.map((article : articleDataProps, idx : number) => {
         return (
-          <ArticleItem key={idx} article={article} />
+          <ArticleItem key={uuid()} article={article} />
         )
     }) : null}
     </Wrapper>

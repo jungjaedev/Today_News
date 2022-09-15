@@ -3,7 +3,6 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     red: string,
-    darkgrey: string,
     midgrey: string,
     disabled: string,
     white: string,
@@ -14,5 +13,6 @@ declare module "styled-components" {
     grey: string,
     yellow: string,
     blue: string,
+    darkgrey: string,
   }
 }
