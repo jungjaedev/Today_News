@@ -1,12 +1,13 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
-import { updateSearchValue, getArticleListFuction } from '../../data/article';
+import { updateSearchValue, getArticleListFuction, searchValue } from '../../data/article';
 import { updateIsSearchAction } from '../../data/manager'
 
 
 const Search = () => {
   const dispatch = useDispatch();
+  const typedValue = useSelector(searchValue); 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateSearchValue(e.target.value))
   }
@@ -24,12 +25,11 @@ const Search = () => {
 
   return (
     <Wrapper>
-      <SearchInput onKeyPress={(e)=> handleKeyPress(e)} placeholder="검색어를 입력하세요." onChange={e => handleChange(e)} type="text" />
+      <SearchInput value={typedValue} onKeyPress={(e)=> handleKeyPress(e)} placeholder="검색어를 입력하세요." onChange={e => handleChange(e)} type="text" />
       <SearchImg  onClick={handleClick} src={require("../../assets/search.png")} alt="search" />
     </Wrapper>
   )
 }
-
 
 const Wrapper = styled.div`
   display: flex;

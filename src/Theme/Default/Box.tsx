@@ -17,7 +17,6 @@ const Box = ({children, onClick} : BoxProps ) => {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   height: auto;
 `
 

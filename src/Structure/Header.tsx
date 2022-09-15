@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import styled from "styled-components";
-import { updateCurrentComponentAction } from '../data/manager';
+import { updateCurrentComponentAction, updateIsSearchAction } from '../data/manager';
+import { updateSearchValue } from '../data/article';
 import Modal from "../Components/Modal/Modal";
 import Portal from "../Components/Modal/Portal";
 
@@ -13,7 +14,9 @@ const Header = () => {
   const [modal, setModal] = useState(false)
   const handleMoveHome = () => {
     navigate("/");
-    dispatch(updateCurrentComponentAction("search"))
+    dispatch(updateCurrentComponentAction("search"));
+    dispatch(updateIsSearchAction(false));
+    dispatch(updateSearchValue(''));
   };
 
   const handleFavorite = () => {

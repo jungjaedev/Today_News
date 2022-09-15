@@ -7,6 +7,7 @@ export const article = createSlice({
     articleList: [],
     searchValue: '',
     selectedFilter: 'recent',
+    resultnum: 0,
   },
   reducers: {
     updateArticleListAction: (state, action) => {
@@ -18,14 +19,18 @@ export const article = createSlice({
     updateSelectedFilterAction: (state, action) => {
       state.selectedFilter = action.payload;
     },
+    updateResultnumFilterAction: (state, action) => {
+      state.resultnum = action.payload;
+    },
   },
 });
 
-export const { updateArticleListAction, updateSearchValue, updateSelectedFilterAction } = article.actions;
+export const { updateArticleListAction, updateSearchValue, updateSelectedFilterAction, updateResultnumFilterAction } = article.actions;
 
 export const articleList = state => state.article.articleList;
 export const searchValue = state => state.article.searchValue;
 export const selectedFilter = state => state.article.selectedFilter;
+export const resultnum = state => state.article.resultnum;
 
 export const getArticleListFuction = () => {
   return (dispatch, getState) => {
@@ -45,6 +50,7 @@ export const getArticleListFuction = () => {
       params.q = searchValue;
     }
     axios.get(`${url}`, { params }).then(res => {
+      dispatch(updateResultnumFilterAction(res.data.totalResults));
       dispatch(updateArticleListAction(res.data.articles));
     });
   };
