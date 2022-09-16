@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import GlobalStyle from './GlobalStyles';
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter } from 'react-router-dom';
 import { ColorTheme } from "./Theme/ColorTheme";
 import { Provider } from 'react-redux';
 import { store } from './data/store'
@@ -16,9 +15,7 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={ColorTheme}>
         <GlobalStyle />
-        <BrowserRouter>
-          <App /> 
-        </BrowserRouter>
+        <App /> 
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

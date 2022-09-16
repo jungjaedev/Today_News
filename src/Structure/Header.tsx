@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
 import { updateCurrentComponentAction, updateIsSearchAction, updateValidationAction } from '../data/manager';
@@ -12,12 +11,10 @@ import { getTokenWithExpireTime } from '../lib/local-storage';
 
 
 const Header = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginCheck = useSelector(isLogin);
   const [modal, setModal] = useState(false)
   const handleMoveHome = () => {
-    navigate("/");
     dispatch(updateCurrentComponentAction("search"));
     dispatch(updateIsSearchAction(false));
     dispatch(updateSearchValue(''));
