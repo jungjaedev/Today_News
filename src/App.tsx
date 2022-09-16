@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { checkLogin } from './lib/validate';
 import Main from './Pages/Main';
 import Container from './Structure/Container';

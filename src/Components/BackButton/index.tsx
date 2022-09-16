@@ -2,8 +2,6 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { updateCurrentComponentAction } from "../../data/manager"
 
-
-
 const BackButton = () => {
   const dispatch = useDispatch();
 
