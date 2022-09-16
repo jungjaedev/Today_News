@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# 엘리스헬스케어 기업 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FE-advanced-course 4번 과제입니다.
 
-## Available Scripts
+## 🍫 프로젝트 실행 방법
 
-In the project directory, you can run:
+`npm install` -> `npm run start` : 터미널에 입력하여 로컬 환경에서 프로젝트 실행
 
-### `npm start`
+## 🍫 사용한 스택 목록
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Typescript : v4.8.3
+- React : v18.2.0
+- Styled-components : v5.3.5
+- React-redux : v8.0.2
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🍫 구현 방법
 
-### `npm test`
+- 전체적인 디렉토리 구조
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+/src
+└───assets/                     // 프로젝트에서 사용하는 svg 등 이미지 요소 포함
+└───Components/                 // 컴포넌트
+└───data/                       // redux store
+└───GlobalStyles/               // 전역 스타일
+└───lib/                        // 자주 쓰는 함수 모듈화
+└───Pages/                      // 메인 컴포넌트
+└───Structure/                  // <App />의 전체 
+└───Theme/                      // 자주 쓰는 컬러
+└───type/                       // 타입
+│   App.tsx                     // <Main /> 렌더링
+│   index.tsx                   // <App />을 루트로 렌더링
+...
+```
+- 로그인 
+  - `validateLogin`으로 아이디/비밀번호 확인
+  - 이메일/비밀번호가 일치하지 않을 시 오류 메세지를 사용자에게 보여줍니다.
+  - 로그인 시 ArticleList 컴포넌트가 보여집니다.
+  - 로그인이 성공하면 전역 상태 `isLogin`을 `true`로 변경하고 로그인 정보를 로컬스토리지에 유효기간과 함께 담아둡니다.
+  - 브라우저 새로고침 시에도 로그인 상태를 유지 시키기 위해 로컬스토리지에서 정보가 있는지 확인하고 유효기간을 비교합니다.
+  
+- 정렬 기능
+  - 검색을 하면 정렬 버튼들이 보이게 됩니다.
+  - 정렬버튼을 누르면 인기순(popularity), 최신순(recent)에 따라서 params를 수정 후 News API로 재요청 후 기사들을 확인할 수 있습니다.
+  
+- 페이지네이션(무한 스크롤)
+  - `react-infinite-scroll-component` 라이브러리를 활용하여 구현하였습니다.
+  - 한 번에 100개씩 데이터를 받아오고 스크롤을 하였을 때 다음 100개를 받아오는 방식으로 구현했습니다.
+  - `page`, `hasMore` 두 변수로 더 받아올 데이터가 있는지 확인 후 요청합니다.
 
-### `npm run build`
+- 즐겨찾기 기능
+  - 즐겨찾기버튼 즐겨찾기 리스트에 추가에 추가됩니다. 
+  - 즐겨찾기는 전역상태와 로컬스토리지에 저장해서 추가되어있는지 확인하고 아이콘⭐️색이 바뀝니다.
+  - 즐겨찾기 페이지에서 즐겨찾기 아이콘을 한번 더 누르면 즐겨찾기 리스트에서 삭제됩니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 본문 수정 기능
+  - 즐겨찾기 페이지에서 수정아이콘을 누르면 해당 기사의 Detail컴포넌트로 이동합니다.
+  - 내용 수정 후 저장하기 버튼을 누르면 수정됩니다. (기사에 따로 id가 없어서 title을 비교하여 수정하였습니다.)
+```
+로컬에서 실행 시
+.env파일을 생성 후 
+REACT_APP_API_URL=https://newsapi.org/v2
+REACT_APP_API_KEY={News API에서 받아온 API Key}
+를 입력 후 저장해 줍니다.
+```
+## 🍫 스크린 샷 (토글버튼을 누르면 gif가 보여집니다.)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+  <summary>로그인, 정렬</summary>
+<img src='https://user-images.githubusercontent.com/69428509/190664183-80729a26-5929-439a-b22d-12dd491367ce.gif' />
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+  <summary>페이지네이션</summary>
+<img src='https://velog.velcdn.com/images/jungjaedev/post/9857a1dd-683c-4c48-9255-f6a35c13e519/image.gif' />
+</details>
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<details>
+  <summary>즐겨찾기, 수정</summary>
+<img src='https://user-images.githubusercontent.com/69428509/190663814-310701cb-4e3f-4f6c-aa5e-a837e5e69a8f.gif' />
+</details>
+ 
