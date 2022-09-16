@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { keyframes } from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
 import ArticleItem from './ArticleItem'
-import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction, updateFavoriteArticleListAction, favoriteArticleList } from '../../data/article';
-// import { getArticleListFuction } from '../../lib/articelList';
+import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction, updateFavoriteArticleListAction } from '../../data/article';
 import { currentComponent, isSearch } from '../../data/manager';
 import { articleDataProps } from '../../type/article'
 import { getFavoriteArticleList } from '../../lib/local-storage';
 
 const ArticleList = () => {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   let articles = useSelector(articleList);
   const onSearch = useSelector(isSearch);
@@ -21,7 +22,7 @@ const ArticleList = () => {
     dispatch(updateIsLoadingAction(true));
     const favoriteList = getFavoriteArticleList('favorite');
     dispatch(updateFavoriteArticleListAction(favoriteList));
-  }, [dispatch, onSearch ])
+  }, [ dispatch, onSearch ])
   articles = articles ? articles : [];
   const value = loadingCheck
     ? null
@@ -35,12 +36,25 @@ const ArticleList = () => {
       <ArticleItem key={idx} article={article} />
     )
   })
-  const list = (articles && !loadingCheck) ? listMap : null;
+  
+  const hasMoreToLoad =  result / 100 > page
+
+  const fetchMoreData = async () => {
+    setPage(page+1);
+    dispatch(getArticleListFuction(page) as any);
+  }
+
   return (
     <Wrapper>
-      {loadingCheck ? <LoadSpinner />: null}
       <ResultCount>{value}</ResultCount>
-      {list}
+      <InfiniteScroll
+        dataLength={(page) * 100}
+        loader={<LoadSpinner />}
+        next={fetchMoreData}
+        hasMore={hasMoreToLoad}
+      >
+        {listMap}
+      </InfiniteScroll>
     </Wrapper>
   )
 }

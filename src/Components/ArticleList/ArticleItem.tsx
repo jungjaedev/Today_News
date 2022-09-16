@@ -71,7 +71,7 @@ const ArticleItem = ({ article }: ArticleItemProps ) => {
         <Footer>
           <ContentInfo>
             <Author>{article.author}</Author>
-            <Date>{article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
+            <Date>{article.publishedAt && article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
           </ContentInfo>
           <ToolButtons>
             {current === "favorite" && <Editicon onClick={handleEdit} src={require("../../assets/edit.png")} />}

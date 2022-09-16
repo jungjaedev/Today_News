@@ -12,7 +12,6 @@ export const article = createSlice({
     isLoading: false,
     favoriteArticleList: [],
     selectedArticle: {},
-    editedArticle: {},
   },
   reducers: {
     updateArticleListAction: (state, action) => {
@@ -36,9 +35,6 @@ export const article = createSlice({
     updateSelectedArticleAction: (state, action) => {
       state.selectedArticle = action.payload;
     },
-    updateEditedArticleAction: (state, action) => {
-      state.editedArticle = action.payload;
-    },
   },
 });
 
@@ -50,7 +46,6 @@ export const {
   updateIsLoadingAction,
   updateFavoriteArticleListAction,
   updateSelectedArticleAction,
-  updateEditedArticleAction,
 } = article.actions;
 
 export const articleList = state => state.article.articleList;
@@ -60,7 +55,6 @@ export const resultNum = state => state.article.resultNum;
 export const isLoading = state => state.article.isLoading;
 export const favoriteArticleList = state => state.article.favoriteArticleList;
 export const selectedArticle = state => state.article.selectedArticle;
-export const editedArticle = state => state.article.editedArticle;
 
 export const getFavoriteListFuction = () => {
   return (dispatch, getState) => {
@@ -70,7 +64,7 @@ export const getFavoriteListFuction = () => {
   };
 };
 
-export const getArticleListFuction = () => {
+export const getArticleListFuction = page => {
   return (dispatch, getState) => {
     const searchValue = getState().article.searchValue;
     const current = getState().manager.currentComponent;
@@ -87,11 +81,20 @@ export const getArticleListFuction = () => {
       url += '/everything';
       params.q = searchValue;
     }
+    if (!page) {
+      params.page = 1;
+    } else {
+      params.page = page + 1;
+    }
     axios
       .get(`${url}`, { params })
       .then(res => {
         dispatch(updateResultnumFilterAction(res.data.totalResults));
-        dispatch(updateArticleListAction(res.data.articles));
+        let newData = res.data.articles;
+        if (page) {
+          newData = [...getState().article.articleList, ...res.data.articles];
+        }
+        dispatch(updateArticleListAction(newData));
       })
       .finally(() => {
         dispatch(updateIsLoadingAction(false));

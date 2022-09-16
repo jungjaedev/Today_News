@@ -9,21 +9,22 @@ interface ContainerProps {
 
 const Container = ({children}: ContainerProps) => {
   return (
-    <Constainer>
+    <Wrapper>
       <Header />
       <SearchBar />
       <Body>
         {children}
       </Body>
-    </Constainer>
+    </Wrapper>
   )
 }
 
-const Constainer = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100vh;
 `
 
 const Body = styled.div`
@@ -31,6 +32,7 @@ const Body = styled.div`
   padding-top: 16px;
   padding-bottom: 20px;
   align-self: center;
+  height: calc(100vh - 10rem);
 `
 
 export default Container;

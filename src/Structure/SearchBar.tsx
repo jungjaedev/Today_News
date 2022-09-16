@@ -31,6 +31,7 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
+  height: 5rem;
 `
 
 

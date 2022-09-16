@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
 import { updateSearchValue, getArticleListFuction, searchValue } from '../../data/article';
-import { updateIsSearchAction } from '../../data/manager'
+import { updateCurrentComponentAction, updateIsSearchAction } from '../../data/manager'
 
 
 const Search = () => {
@@ -15,6 +15,7 @@ const Search = () => {
   const handleClick = () => {
     dispatch(updateIsSearchAction(true));
     dispatch(getArticleListFuction() as any);
+    dispatch(updateCurrentComponentAction("search"));
   }
 
   const handleKeyPress = (e : React.KeyboardEvent<HTMLInputElement>) => {
