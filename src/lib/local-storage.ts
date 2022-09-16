@@ -1,3 +1,5 @@
+import { articleDataProps } from '../type/article'
+
 export const setTokenWithExpireTime = ( name: string, token: string, tts: number ) => {
   const obj = {
     token,
@@ -5,7 +7,6 @@ export const setTokenWithExpireTime = ( name: string, token: string, tts: number
   };
 
   const objString = JSON.stringify(obj);
-
   window.localStorage.setItem(name, objString);
 }
 
@@ -24,18 +25,21 @@ export const getTokenWithExpireTime = (name: string) => {
   return obj.token;
 };
 
-interface articleDataProps {
-  author: string,
-  title: string,
-  description: string,
-  url: string,
-  urlToImage: string,
-  publishedAt: string,
-  content: string
+export const setFavoriteArticleList = (article : articleDataProps, name: string) => {
+  let articleList = [];
+  const objString = window.localStorage.getItem(name);
+
+  if(objString) {
+    articleList = JSON.parse(objString);
+  }
+  articleList.push(article);
+  window.localStorage.setItem(name,JSON.stringify(articleList));
 }
 
-export const setArticleList = (article : articleDataProps) => {
-  const articleList = [];
-  articleList.push(article);
-  window.localStorage.setItem("favorite",JSON.stringify(articleList));
+export const getFavoriteArticleList = (name: string) => {
+  const objString = window.localStorage.getItem(name);
+  if (!objString) return null;
+  let articlListArray = JSON.parse(objString);
+
+  return articlListArray;
 }

@@ -54,7 +54,7 @@ const Login = ({handleModal}: LoginProps) => {
 const Validation = styled.div<ValidationProps>`
   margin: 0.5rem 0;
   font-weight: 400;
-  color: ${({ theme }) => theme.darkgrey};
+  color: ${({ theme }) => theme.white};
 
   ${({ checkValidation }) => {
     return checkValidation === 'true' && `opacity: 0`;

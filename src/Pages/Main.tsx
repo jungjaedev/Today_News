@@ -9,7 +9,8 @@ const Main = () => {
 
   return (
     <Wrapper>
-      {current === "search" ? <ArticleList /> : <Favorite />}
+      <ArticleList />
+      {/* {current === "search" ? <ArticleList /> : <Favorite />} */}
     </Wrapper>
   )
 }

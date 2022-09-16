@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getFavoriteArticleList } from '../../lib/local-storage';
 
 export const article = createSlice({
   name: 'article',
@@ -7,7 +8,9 @@ export const article = createSlice({
     articleList: [],
     searchValue: '',
     selectedFilter: 'recent',
-    resultnum: 0,
+    resultNum: 0,
+    isLoading: false,
+    favoriteArticleList: [],
   },
   reducers: {
     updateArticleListAction: (state, action) => {
@@ -20,17 +23,40 @@ export const article = createSlice({
       state.selectedFilter = action.payload;
     },
     updateResultnumFilterAction: (state, action) => {
-      state.resultnum = action.payload;
+      state.resultNum = action.payload;
+    },
+    updateIsLoadingAction: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    updateFavoriteArticleListAction: (state, action) => {
+      state.favoriteArticleList = action.payload;
     },
   },
 });
 
-export const { updateArticleListAction, updateSearchValue, updateSelectedFilterAction, updateResultnumFilterAction } = article.actions;
+export const {
+  updateArticleListAction,
+  updateSearchValue,
+  updateSelectedFilterAction,
+  updateResultnumFilterAction,
+  updateIsLoadingAction,
+  updateFavoriteArticleListAction,
+} = article.actions;
 
 export const articleList = state => state.article.articleList;
 export const searchValue = state => state.article.searchValue;
 export const selectedFilter = state => state.article.selectedFilter;
-export const resultnum = state => state.article.resultnum;
+export const resultNum = state => state.article.resultNum;
+export const isLoading = state => state.article.isLoading;
+export const favoriteArticleList = state => state.article.favoriteArticleList;
+
+export const getFavoriteListFuction = () => {
+  return (dispatch, getState) => {
+    const favoriteList = getFavoriteArticleList('favorite');
+    dispatch(updateFavoriteArticleListAction(favoriteList));
+    dispatch(updateArticleListAction(favoriteList));
+  };
+};
 
 export const getArticleListFuction = () => {
   return (dispatch, getState) => {
@@ -49,10 +75,15 @@ export const getArticleListFuction = () => {
       url += '/everything';
       params.q = searchValue;
     }
-    axios.get(`${url}`, { params }).then(res => {
-      dispatch(updateResultnumFilterAction(res.data.totalResults));
-      dispatch(updateArticleListAction(res.data.articles));
-    });
+    axios
+      .get(`${url}`, { params })
+      .then(res => {
+        dispatch(updateResultnumFilterAction(res.data.totalResults));
+        dispatch(updateArticleListAction(res.data.articles));
+      })
+      .finally(() => {
+        dispatch(updateIsLoadingAction(false));
+      });
   };
 };
 

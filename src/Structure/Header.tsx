@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
 import { updateCurrentComponentAction, updateIsSearchAction, updateValidationAction } from '../data/manager';
-import { updateSearchValue } from '../data/article';
+import { getFavoriteListFuction, updateSearchValue } from '../data/article';
 import { isLogin } from '../data/user';
 import Modal from "../Components/Modal/Modal";
 import Portal from "../Components/Modal/Portal";
 import { LogoutFunction } from '../lib/validate';
+import { getTokenWithExpireTime } from '../lib/local-storage';
 
 
 const Header = () => {
@@ -24,8 +25,10 @@ const Header = () => {
 
 
   const handleFavorite = () => {
-    dispatch(updateCurrentComponentAction("favorite"))
-    console.log('즐찾');
+    dispatch(updateCurrentComponentAction("favorite"));
+    if (getTokenWithExpireTime("tokenWithExpireken")) {
+      dispatch(getFavoriteListFuction() as any);
+    }
   }
 
   const handleLogin = () => {
@@ -54,13 +57,11 @@ const Header = () => {
           <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
         </LogoWrapper>
         <Buttons>
-          <Button onClick={handleFavorite}>즐겨찾기</Button>
+          { loginCheck && <Button onClick={handleFavorite}>즐겨찾기</Button> }
           { loginCheck 
             ? <Button onClick={handleLogout}>로그아웃</Button> 
             : <Button onClick={handleLogin}>로그인</Button> 
           }
-          
-          
         </Buttons>
       </Wrapper>
     </>

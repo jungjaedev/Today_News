@@ -1,41 +1,48 @@
-import React from 'react'
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { currentComponent } from "../../data/manager"
-import { setArticleList } from '../../lib/local-storage';
+import { setFavoriteArticleList } from '../../lib/local-storage';
+import { articleDataProps } from '../../type/article';
+import { isLogin } from '../../data/user/index';
+import { favoriteArticleList } from '../../data/article';
 
-
-interface articleDataProps {
-  author: string,
-  title: string,
-  description: string,
-  url: string,
-  urlToImage: string,
-  publishedAt: string,
-  content: string
-}
 
 interface ArticleItemProps {
-  key: string;
   article: articleDataProps;
 }
 
-const ArticleItem = ({ key , article }: ArticleItemProps ) => {
-  const current = useSelector(currentComponent)
+const ArticleItem = ({ article }: ArticleItemProps ) => {
+  const current = useSelector(currentComponent);
+  const loginCheck = useSelector(isLogin);
+  const favoriteList = useSelector(favoriteArticleList);
 
   const handleOpenNewTab = () => {
     window.open(`${article.url}`,'_black')
   }
 
   const handleFavorite = () => {
-    console.log('favorite');
-    setArticleList(article);
+    if(loginCheck) {
+      setFavoriteArticleList(article, "favorite");
+    }
   }
 
   const handleEdit = () => {
     console.log('edit');
   }
 
+  const isFavorite = () => {
+    const articleFound = favoriteList.find((item : articleDataProps ) => {
+      console.log(item.title)
+      console.log(article.title)
+      return item.title === article.title
+    })
+    // console.log(articleFound)
+    if(articleFound) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   return (
     <Wrapper>
       <ThumbNailWrapper>
@@ -50,8 +57,8 @@ const ArticleItem = ({ key , article }: ArticleItemProps ) => {
             <Date>{article.publishedAt.replace(/[T, Z]/g,' ')}</Date>
           </ContentInfo>
           <ToolButtons>
-            {current === "favorite" ? <Editicon onClick={handleEdit} src={require("../../assets/edit.png")} /> : null}
-            <FavoriteIcon onClick={handleFavorite} src={require("../../assets/favoriteEmpty.png")} />
+            {current === "favorite" && <Editicon onClick={handleEdit} src={require("../../assets/edit.png")} />}
+            {loginCheck && <FavoriteIcon onClick={handleFavorite} src={current !== "favorite" && !isFavorite()?  require("../../assets/favoriteEmpty.png") : require("../../assets/favorite.png")} />}
           </ToolButtons>
         </Footer>
       </MainText>
