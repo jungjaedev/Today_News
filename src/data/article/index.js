@@ -11,6 +11,8 @@ export const article = createSlice({
     resultNum: 0,
     isLoading: false,
     favoriteArticleList: [],
+    selectedArticle: {},
+    editedArticle: {},
   },
   reducers: {
     updateArticleListAction: (state, action) => {
@@ -31,6 +33,12 @@ export const article = createSlice({
     updateFavoriteArticleListAction: (state, action) => {
       state.favoriteArticleList = action.payload;
     },
+    updateSelectedArticleAction: (state, action) => {
+      state.selectedArticle = action.payload;
+    },
+    updateEditedArticleAction: (state, action) => {
+      state.editedArticle = action.payload;
+    },
   },
 });
 
@@ -41,6 +49,8 @@ export const {
   updateResultnumFilterAction,
   updateIsLoadingAction,
   updateFavoriteArticleListAction,
+  updateSelectedArticleAction,
+  updateEditedArticleAction,
 } = article.actions;
 
 export const articleList = state => state.article.articleList;
@@ -49,6 +59,8 @@ export const selectedFilter = state => state.article.selectedFilter;
 export const resultNum = state => state.article.resultNum;
 export const isLoading = state => state.article.isLoading;
 export const favoriteArticleList = state => state.article.favoriteArticleList;
+export const selectedArticle = state => state.article.selectedArticle;
+export const editedArticle = state => state.article.editedArticle;
 
 export const getFavoriteListFuction = () => {
   return (dispatch, getState) => {

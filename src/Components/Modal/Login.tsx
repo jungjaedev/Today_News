@@ -27,6 +27,12 @@ const Login = ({handleModal}: LoginProps) => {
     dispatch(updateloginInfoAction(loginUser));
   }
 
+  const handleKeyPress = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      handleSignInClick();
+    }
+  }
+
   return (
     <Wrapper>
       <CloseWrapper>
@@ -40,7 +46,7 @@ const Login = ({handleModal}: LoginProps) => {
             <Input onChange={(e) => handleChange(e, "account")} placeholder='Account' type="text" />
         </InputWrapper>
         <InputWrapper>
-            <Input onChange={(e) => handleChange(e, "password")} placeholder='Password' type="password" />
+            <Input onKeyPress={(e)=> handleKeyPress(e)} onChange={(e) => handleChange(e, "password")} placeholder='Password' type="password" />
         </InputWrapper>
         <Validation checkValidation={checkValidation.toString()}>아이디, 비밀번호를 다시 확인해 주시기 바랍니다.</Validation>
         <ButtonWrapper>

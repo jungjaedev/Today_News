@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { store } from '../data/store';
-import { updateArticleListAction, updateResultnumFilterAction, updateIsLoadingAction  } from '../data/article';
+import { updateArticleListAction, updateResultnumFilterAction, updateIsLoadingAction, updateFavoriteArticleListAction  } from '../data/article';
+import { getFavoriteArticleList } from './local-storage';
+import { articleDataProps } from '../type/article';
 
 interface paramsProps {
   apiKey: string | undefined;
@@ -38,3 +40,11 @@ export const getArticleListFuction = () => {
     })
   );
 };
+
+export const deleteFavoriteArticle = (article : articleDataProps) => {
+  const favoriteList = getFavoriteArticleList("favorite");
+  const articleIndex = favoriteList.findIndex((item : articleDataProps) => item.title === article.title);
+  favoriteList.splice(articleIndex,1);
+  window.localStorage.setItem("favorite",JSON.stringify(favoriteList));
+  store.dispatch(updateFavoriteArticleListAction(favoriteList));
+}

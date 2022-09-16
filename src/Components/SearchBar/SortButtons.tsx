@@ -30,7 +30,7 @@ const SortButtons = () => {
 
   return (
     <Wrapper  searchOn={searchOn.toString()}>
-      {current === "favorite" ? null : buttons}
+      {current === "favorite" || !searchOn ? null : buttons}
     </Wrapper>
   )
 }

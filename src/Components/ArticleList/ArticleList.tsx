@@ -2,25 +2,35 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { keyframes } from "styled-components";
 import ArticleItem from './ArticleItem'
-import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction } from '../../data/article';
+import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction, updateFavoriteArticleListAction } from '../../data/article';
 // import { getArticleListFuction } from '../../lib/articelList';
 import { currentComponent, isSearch } from '../../data/manager';
 import { articleDataProps } from '../../type/article'
+import { getFavoriteArticleList } from '../../lib/local-storage';
 
 const ArticleList = () => {
   const dispatch = useDispatch();
-  const articles = useSelector(articleList);
+  let articles = useSelector(articleList);
   const onSearch = useSelector(isSearch);
   const result = useSelector(resultNum);
   const loadingCheck = useSelector(isLoading);
   const current = useSelector(currentComponent);
-
+  
   useEffect(() => {
     dispatch(getArticleListFuction() as any);
     dispatch(updateIsLoadingAction(true));
+    const favoriteList = getFavoriteArticleList('favorite');
+    dispatch(updateFavoriteArticleListAction(favoriteList));
   }, [dispatch, onSearch])
   
-  const value = loadingCheck ? null : onSearch ? `총 ${result}개의 검색결과` : current === "favorite" ? `총 ${articles.length}개의 즐겨찾기` : `US Top Headline`;
+  articles = articles ? articles : [];
+  const value = loadingCheck
+    ? null
+    : onSearch
+      ? `총 ${result}개의 검색결과`
+      : current === "favorite"
+        ? `총 ${articles.length}개의 즐겨찾기`
+        : `US Top Headline`
   const listMap = articles.map((article : articleDataProps, idx : number) => {
     return (
       <ArticleItem key={idx} article={article} />

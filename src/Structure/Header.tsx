@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
 import { updateCurrentComponentAction, updateIsSearchAction, updateValidationAction } from '../data/manager';
-import { getFavoriteListFuction, updateSearchValue } from '../data/article';
+import { getFavoriteListFuction, updateSearchValue, getArticleListFuction } from '../data/article';
 import { isLogin } from '../data/user';
 import Modal from "../Components/Modal/Modal";
 import Portal from "../Components/Modal/Portal";
@@ -21,6 +21,7 @@ const Header = () => {
     dispatch(updateCurrentComponentAction("search"));
     dispatch(updateIsSearchAction(false));
     dispatch(updateSearchValue(''));
+    dispatch(getArticleListFuction() as any);
   };
 
 
@@ -92,6 +93,7 @@ const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   right: 0;
+  margin-right: 5rem;
   padding: 0.5rem;
 `
 

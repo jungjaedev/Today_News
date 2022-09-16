@@ -1,48 +1,65 @@
+import { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { currentComponent } from "../../data/manager"
+import { useSelector, useDispatch } from "react-redux";
+import { currentComponent, updateCurrentComponentAction } from "../../data/manager"
 import { setFavoriteArticleList } from '../../lib/local-storage';
 import { articleDataProps } from '../../type/article';
 import { isLogin } from '../../data/user/index';
-import { favoriteArticleList } from '../../data/article';
-
+import { favoriteArticleList, updateSelectedArticleAction } from '../../data/article';
+import { deleteFavoriteArticle } from '../../lib/articelList';
 
 interface ArticleItemProps {
   article: articleDataProps;
 }
 
 const ArticleItem = ({ article }: ArticleItemProps ) => {
+  const dispatch = useDispatch();
+  const [ isOnFavorite, setIsOnFavorite ] = useState(false);
   const current = useSelector(currentComponent);
   const loginCheck = useSelector(isLogin);
   const favoriteList = useSelector(favoriteArticleList);
 
+  useEffect(() => {
+    setIsOnFavorite(isFavorite()) 
+  }, [current]);
+  
+
   const handleOpenNewTab = () => {
-    window.open(`${article.url}`,'_black')
+    window.open(`${article.url}`,'_blank')
   }
 
   const handleFavorite = () => {
     if(loginCheck) {
-      setFavoriteArticleList(article, "favorite");
+      if(isOnFavorite) {
+        setIsOnFavorite(false);
+        deleteFavoriteArticle(article);
+      } else {
+        setIsOnFavorite(true);
+        setFavoriteArticleList(article, "favorite");
+      }
     }
   }
 
   const handleEdit = () => {
-    console.log('edit');
+    dispatch(updateSelectedArticleAction(article));
+    dispatch(updateCurrentComponentAction("detail"));
   }
 
   const isFavorite = () => {
-    const articleFound = favoriteList.find((item : articleDataProps ) => {
-      console.log(item.title)
-      console.log(article.title)
-      return item.title === article.title
-    })
-    // console.log(articleFound)
-    if(articleFound) {
-      return true;
+    if(favoriteList) {
+      const articleFound = favoriteList.find((item : articleDataProps ) => item.title === article.title)
+      if(articleFound) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
+  const favoriteImg = isOnFavorite 
+    ? require("../../assets/favorite.png")
+    : require("../../assets/favoriteEmpty.png") 
   return (
     <Wrapper>
       <ThumbNailWrapper>
@@ -58,7 +75,7 @@ const ArticleItem = ({ article }: ArticleItemProps ) => {
           </ContentInfo>
           <ToolButtons>
             {current === "favorite" && <Editicon onClick={handleEdit} src={require("../../assets/edit.png")} />}
-            {loginCheck && <FavoriteIcon onClick={handleFavorite} src={current !== "favorite" && !isFavorite()?  require("../../assets/favoriteEmpty.png") : require("../../assets/favorite.png")} />}
+            {loginCheck && <FavoriteIcon onClick={handleFavorite} src={favoriteImg} />}
           </ToolButtons>
         </Footer>
       </MainText>
