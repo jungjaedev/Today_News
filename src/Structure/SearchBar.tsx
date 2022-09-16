@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import styled from "styled-components";
+import BackButton from '../Components/BackButton';
 import Search from "../Components/SearchBar/Search"
 import SortButtons from "../Components/SearchBar/SortButtons"
 import { currentComponent } from '../data/manager';
@@ -9,7 +10,7 @@ const SearchBar = () => {
   const current = useSelector(currentComponent);
 
   const content = current === "detail" 
-                  ? null 
+                  ? <BackButton /> 
                   : (
                     <>
                       <Search />
@@ -28,6 +29,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  position: relative;
   flex-direction: column;
 `
 

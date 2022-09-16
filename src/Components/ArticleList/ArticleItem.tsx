@@ -67,7 +67,7 @@ const ArticleItem = ({ article }: ArticleItemProps ) => {
       </ThumbNailWrapper>
       <MainText>
         <Title onClick={handleOpenNewTab}>{article.title}</Title>
-        <Content onClick={handleOpenNewTab}>{article.content === null ? article.description : article.content.slice(0,-14)}</Content>
+        <Content onClick={handleOpenNewTab}>{article.content && article.content.slice(0,-14)}</Content>
         <Footer>
           <ContentInfo>
             <Author>{article.author}</Author>

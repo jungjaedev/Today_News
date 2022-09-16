@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { keyframes } from "styled-components";
 import ArticleItem from './ArticleItem'
-import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction, updateFavoriteArticleListAction } from '../../data/article';
+import { getArticleListFuction, resultNum, articleList, isLoading, updateIsLoadingAction, updateFavoriteArticleListAction, favoriteArticleList } from '../../data/article';
 // import { getArticleListFuction } from '../../lib/articelList';
 import { currentComponent, isSearch } from '../../data/manager';
 import { articleDataProps } from '../../type/article'
@@ -21,8 +21,7 @@ const ArticleList = () => {
     dispatch(updateIsLoadingAction(true));
     const favoriteList = getFavoriteArticleList('favorite');
     dispatch(updateFavoriteArticleListAction(favoriteList));
-  }, [dispatch, onSearch])
-  
+  }, [dispatch, onSearch ])
   articles = articles ? articles : [];
   const value = loadingCheck
     ? null
