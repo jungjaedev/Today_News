@@ -77,7 +77,7 @@ REACT_APP_API_KEY={News API에서 받아온 API Key}
 
 <details>
   <summary>페이지네이션</summary>
-<img src='https://velog.velcdn.com/images/jungjaedev/post/9857a1dd-683c-4c48-9255-f6a35c13e519/image.gif' />
+<img src='https://user-images.githubusercontent.com/69428509/190841507-9b5517d1-15c3-4d5b-a0d9-f9bc45881103.gif' />
 </details>
 
 <details>
