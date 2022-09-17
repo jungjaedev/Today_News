@@ -41,7 +41,7 @@ FE-advanced-course 4번 과제입니다.
   
 - 정렬 기능
   - 검색을 하면 정렬 버튼들이 보이게 됩니다.
-  - 정렬버튼을 누르면 인기순(popularity), 최신순(recent)에 따라서 params를 수정 후 News API로 재요청 후 기사들을 확인할 수 있습니다.
+  - 정렬버튼을 누르면 인기순(popularity), 최신순(recent)에 따라서 params를 수정 후 News API로 재요청하고, 정렬된 기사가 보여집니다.
   
 - 페이지네이션(무한 스크롤)
   - `react-infinite-scroll-component` 라이브러리를 활용하여 구현하였습니다.
