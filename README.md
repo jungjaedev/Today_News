@@ -1,21 +1,29 @@
 # 엘리스헬스케어 기업 과제
 
-FE-advanced-course 4번 과제입니다.
+## 프로젝트 소개
 
-## 🍫 프로젝트 실행 방법
+---
 
-`npm install` -> `npm run start` : 터미널에 입력하여 로컬 환경에서 프로젝트 실행
+- 개요 : 엘리스헬스케어 기업 과제
+- 주제 : OPen API를 이용한 기사 검색 서비스
+- 기간 : 2022.09.13 ~ 2022.09.16
 
-## 🍫 사용한 스택 목록
+<br />
+
+## 사용한 스택 목록
+
+---
 
 - Typescript : v4.8.3
 - React : v18.2.0
 - Styled-components : v5.3.5
 - React-redux : v8.0.2
 
-## 🍫 구현 방법
+<br />
 
-- 전체적인 디렉토리 구조
+## 디렉토리 구조
+
+---
 
 ```js
 /src
@@ -32,6 +40,12 @@ FE-advanced-course 4번 과제입니다.
 │   index.tsx                   // <App />을 루트로 렌더링
 ...
 ```
+
+<br />
+
+## 구현 방법
+
+---
 
 - 검색, 정렬 기능
 
@@ -67,23 +81,54 @@ FE-advanced-course 4번 과제입니다.
   - 즐겨찾기 페이지에서 수정아이콘을 누르면 해당 기사의 `<Detail />`컴포넌트로 이동합니다.
   - 내용 수정 후 저장하기 버튼을 누르면 수정됩니다. (기사에 따로 id가 없기 때문에 `title`을 비교하여 내용을 수정하였습니다.)
 
+<br />
+
+## 프로젝트 설치 및 실행
+
+---
+
+1. Git Clone
+
 ```
-로컬에서 실행 시
-.env파일을 생성 후
+$ git cloen https://github.com/jungjaedev/codestates-fe-advanced-project-jungjaewon-4.git
+```
+
+2. 프로젝트 패키지 설치
+
+```
+$ npm install
+```
+
+3. 프로젝트 실행
+
+> 로컬에서 실행 시 .env파일을 생성 후 저장
+
+```
 REACT_APP_API_URL=https://newsapi.org/v2
 REACT_APP_API_KEY={News API에서 받아온 API Key}
-를 입력 후 저장해 줍니다.
 ```
 
-- 배포
+```
+$ npm run start
+```
 
-  - vercel을 통해 배포하였으나 News API CORS 정책으로 인해 정상작동되지 않습니다.
-  - 배포 주소 : https://alycehealth-iezyg2o79-jungjaedev.vercel.app/
+<br />
 
-  - 배포 스크린 샷 - 검색결과가 나오지 않습니다.
-    <img src='https://user-images.githubusercontent.com/69428509/190863803-affda35b-dd5e-42f9-841a-9ecbab11d41a.png' />
+## 배포
 
-## 🍫 스크린 샷
+---
+
+- vercel을 통해 배포하였으나 News API CORS 정책으로 인해 정상작동되지 않습니다.
+- 배포 주소 : https://alycehealth-iezyg2o79-jungjaedev.vercel.app/
+
+- 배포 스크린 샷 - 검색결과가 나오지 않습니다.
+  <img src='https://user-images.githubusercontent.com/69428509/190863803-affda35b-dd5e-42f9-841a-9ecbab11d41a.png' />
+
+<br />
+
+## GIF 스크린 샷
+
+---
 
 - <summary>로그인, 정렬</summary>
   <img src='https://user-images.githubusercontent.com/69428509/190664183-80729a26-5929-439a-b22d-12dd491367ce.gif' />
