@@ -80,7 +80,7 @@ REACT_APP_API_KEY={News API에서 받아온 API Key}
   - vercel을 통해 배포하였으나 News API CORS 정책으로 인해 정상작동되지 않습니다.
   - 배포 주소 : https://alycehealth-iezyg2o79-jungjaedev.vercel.app/
 
-- 배포 스크린 샷
+  - 배포 스크린 샷
 
   <summary>검색결과가 나오지 않습니다.</summary>
   <img src='https://user-images.githubusercontent.com/69428509/190863803-affda35b-dd5e-42f9-841a-9ecbab11d41a.png' />
