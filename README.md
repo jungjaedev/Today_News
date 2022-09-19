@@ -2,8 +2,6 @@
 
 ## 프로젝트 소개
 
-
-
 - 개요 : 엘리스헬스케어 기업 과제
 - 주제 : OPen API를 이용한 기사 검색 서비스
 - 기간 : 2022.09.13 ~ 2022.09.16
@@ -11,8 +9,6 @@
 <br />
 
 ## 사용한 스택 목록
-
-
 
 - Typescript : v4.8.3
 - React : v18.2.0
@@ -22,8 +18,6 @@
 <br />
 
 ## 디렉토리 구조
-
-
 
 ```js
 /src
@@ -43,9 +37,7 @@
 
 <br />
 
-## 구현 방법
-
-
+## 구현 기능
 
 - 검색, 정렬 기능
 
@@ -85,38 +77,34 @@
 
 ## 프로젝트 설치 및 실행
 
-
-
 1. Git Clone
 
-```
+```shell
 $ git cloen https://github.com/jungjaedev/codestates-fe-advanced-project-jungjaewon-4.git
 ```
 
 2. 프로젝트 패키지 설치
 
-```
+```shell
 $ npm install
 ```
 
 3. 프로젝트 실행
 
-> 로컬에서 실행 시 .env파일을 생성 후 저장
+로컬에서 실행 시 .env파일을 생성 후 저장
 
-```
+```.env
 REACT_APP_API_URL=https://newsapi.org/v2
 REACT_APP_API_KEY={News API에서 받아온 API Key}
 ```
 
-```
+```shell
 $ npm run start
 ```
 
 <br />
 
 ## 배포
-
-
 
 - vercel을 통해 배포하였으나 News API CORS 정책으로 인해 정상작동되지 않습니다.
 - 배포 주소 : https://alycehealth-iezyg2o79-jungjaedev.vercel.app/
@@ -127,8 +115,6 @@ $ npm run start
 <br />
 
 ## GIF 스크린 샷
-
-
 
 - <summary>로그인, 정렬</summary>
   <img src='https://user-images.githubusercontent.com/69428509/190664183-80729a26-5929-439a-b22d-12dd491367ce.gif' />
