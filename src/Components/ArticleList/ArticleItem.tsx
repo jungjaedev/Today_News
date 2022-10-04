@@ -57,15 +57,24 @@ const ArticleItem = ({ article }: ArticleItemProps ) => {
       return false;
     }
   }
+  // const splitedTitle = article.title.split('-');
+  
+  
+  // const publishedBy = splitedTitle[splitedTitle.length-1];
+  // const articleTitle = splitedTitle.slice(0, -1)
+
+
   const favoriteImg = isOnFavorite 
     ? require("../../assets/favorite.png")
     : require("../../assets/favoriteEmpty.png") 
+
   return (
     <Wrapper>
       <ThumbNailWrapper>
         <ThumbNail onClick={handleOpenNewTab} src={article.urlToImage === null ? require("../../assets/no_image.png") : article.urlToImage } alt="thumbNail" />
       </ThumbNailWrapper>
       <MainText>
+        {/* <Title onClick={handleOpenNewTab}>[{publishedBy} ] {articleTitle}</Title> */}
         <Title onClick={handleOpenNewTab}>{article.title}</Title>
         <Content onClick={handleOpenNewTab}>{article.content && article.content.slice(0,-14)}</Content>
         <Footer>

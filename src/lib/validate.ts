@@ -10,7 +10,7 @@ interface userProps {
 }
 
 export const validateLogin = (user : userProps, handleModal: () => void) => {
-  if(user.account === 'alyce' && user.password === 'alyce123') {
+  if(user.account === 'user' && user.password === 'user123') {
     handleModal();
     const token = uuid();
     store.dispatch(updateIsLoginAction(true));

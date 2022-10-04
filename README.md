@@ -1,8 +1,8 @@
-# 엘리스헬스케어 기업 과제
+# News API 활용한 프로젝트
 
 ## 프로젝트 소개
 
-- 개요 : 엘리스헬스케어 기업 과제
+- 개요 : News API 활용한 프로젝트
 - 주제 : OPen API를 이용한 기사 검색 서비스
 - 기간 : 2022.09.13 ~ 2022.09.16
 
@@ -13,7 +13,7 @@
 - Typescript : v4.8.3
 - React : v18.2.0
 - Styled-components : v5.3.5
-- React-redux : v8.0.2
+- React-toolit : v1.8.5
 
 <br />
 
@@ -80,7 +80,7 @@
 1. Git Clone
 
 ```shell
-$ git cloen https://github.com/jungjaedev/codestates-fe-advanced-project-jungjaewon-4.git
+$ git clone https://github.com/jungjaedev/codestates-fe-advanced-project-jungjaewon-4.git
 ```
 
 2. 프로젝트 패키지 설치
@@ -116,12 +116,15 @@ $ npm run start
 
 ## GIF 스크린 샷
 
-- <summary>로그인, 정렬</summary>
-  <img src='https://user-images.githubusercontent.com/69428509/190664183-80729a26-5929-439a-b22d-12dd491367ce.gif' />
+- <summary>로그인, 즐겨찾기</summary>
+  <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ae780ff6-6e72-448c-92a8-b3f8059ccb84/loginFav.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221004%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221004T142904Z&X-Amz-Expires=86400&X-Amz-Signature=a0770202b9f213da86c3d7ec06325e46598cd905e6ea60831c5d05f686a0e7d1&X-Amz-SignedHeaders=host&x-id=GetObject' />
 
-- <summary>페이지네이션</summary>
-  <img src='https://user-images.githubusercontent.com/69428509/190841507-9b5517d1-15c3-4d5b-a0d9-f9bc45881103.gif' />
+- <summary>페이지네이션(무한스크롤)</summary>
+  <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/207611d7-fa53-4b57-b52c-602ad0448cfc/scrollinfi.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221004%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221004T142904Z&X-Amz-Expires=86400&X-Amz-Signature=1e0b19994fd6ee275850fec4bd1ebd6a6537f2efa3073c0927bfc2801e92c298&X-Amz-SignedHeaders=host&x-id=GetObject' />
   </details>
 
-- <summary>즐겨찾기, 수정</summary>
-  <img src='https://user-images.githubusercontent.com/69428509/190663814-310701cb-4e3f-4f6c-aa5e-a837e5e69a8f.gif' />
+- <summary>최신순, 인기 출처순 정렬</summary>
+  <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/95b1580f-0608-4cbd-889c-80ca442712be/searchsort.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221004%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221004T142904Z&X-Amz-Expires=86400&X-Amz-Signature=b72c3f20e02a93079f855f130db12c01e8c0a31dca24347ef9efd9df8c2ed83b&X-Amz-SignedHeaders=host&x-id=GetObject' />
+
+  - <summary>즐겨찾기 본문 수정</summary>
+    <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c71d0406-b67b-4f0f-ad2f-e425a3d9000e/favEdit.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221004%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221004T142905Z&X-Amz-Expires=86400&X-Amz-Signature=174a598c33101a82403739352c25feca9dfb92eb5d32f03118a9cc80efd29246&X-Amz-SignedHeaders=host&x-id=GetObject' />

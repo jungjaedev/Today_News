@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
 import { updateSearchValue, getArticleListFuction, searchValue } from '../../data/article';
 import { updateCurrentComponentAction, updateIsSearchAction } from '../../data/manager'
-
+import { AiOutlineSearch } from 'react-icons/ai'
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Search = () => {
   return (
     <Wrapper>
       <SearchInput value={typedValue} onKeyPress={(e)=> handleKeyPress(e)} placeholder="검색어를 입력하세요." onChange={e => handleChange(e)} type="text" />
-      <SearchImg  onClick={handleClick} src={require("../../assets/search.png")} alt="search" />
+      <AiOutlineSearch style={{ cursor: 'pointer'}} size={36}  onClick={handleClick}  />
     </Wrapper>
   )
 }
@@ -38,15 +38,8 @@ const Wrapper = styled.div`
   align-items: center;
   border: 1px solid black;
   border-radius: 1rem;
-  width: 30rem;
+  width: 27rem;
 `
-
-const SearchImg = styled.img`
-  width: 3rem;
-  margin: 1rem 0;
-  cursor: pointer;
-  padding-right: 0.5rem;
-` 
 
 const SearchInput = styled.input`
   /* border: none; */

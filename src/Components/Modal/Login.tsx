@@ -50,12 +50,28 @@ const Login = ({handleModal}: LoginProps) => {
         </InputWrapper>
         <Validation checkValidation={checkValidation.toString()}>아이디, 비밀번호를 다시 확인해 주시기 바랍니다.</Validation>
         <ButtonWrapper>
+          <Comment>
+            {/* <div><strong>아래 계정으로 테스트해보실 수 있습니다.</strong></div>
+            <div style={{marginTop: '2px'}}> 아이디 : user</div>
+            <div style={{marginTop: '2px'}}> 비밀번호 : user123</div> */}
+          </Comment>
           <LoginButton onClick={handleSignInClick}>Sign in</LoginButton>
         </ButtonWrapper>
       </Inputs>
     </Wrapper>
   )
 }
+
+const Comment = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  line-height: 1.2rem;
+  background-color: ${({ theme }) => theme.lightGrey};
+  background-color: ${({ theme }) => theme.blue};
+  padding: 0.5rem;
+  margin-right: 1rem;
+`
 
 const Validation = styled.div<ValidationProps>`
   margin: 0.5rem 0;
@@ -83,11 +99,10 @@ const CloseImg = styled.img`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-left: 15rem;
 `
 
 const LoginButton = styled.button`
-  margin: 1rem 1rem 0;
+  margin: 1rem 0;
   cursor: pointer;
   font-size: 1.1rem;
   border-radius: 2rem;

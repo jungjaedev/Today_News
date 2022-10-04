@@ -52,7 +52,7 @@ const Header = () => {
       )}
       <Wrapper>
         <LogoWrapper>
-          <Logo src={require("../assets/header-logo.png")} onClick={handleMoveHome} />
+          <Logo onClick={handleMoveHome}>Today News</Logo>
         </LogoWrapper>
         <Buttons>
           { loginCheck && <Button onClick={handleFavorite}>즐겨찾기</Button> }
@@ -69,9 +69,10 @@ const Header = () => {
 const Wrapper = styled.div`
   display: flex;
   position: relative;
-  height: 5rem;
+  height: 3rem;
   margin: 1rem 0 2rem;
 `;
+
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -81,8 +82,11 @@ const LogoWrapper = styled.div`
   height: 5rem;
 `
 
-const Logo = styled.img`
+const Logo = styled.div`
   cursor: pointer;
+  font-size: 4rem;
+  font-weight: 900;
+  color: ${({ theme }) => theme.blue}
 `;
 
 const Buttons = styled.div`
