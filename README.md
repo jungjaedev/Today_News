@@ -107,7 +107,6 @@ $ npm run start
 ## 배포
 
 - vercel을 통해 배포하였으나 News API CORS 정책으로 인해 정상작동되지 않습니다.
-- 배포 주소 : https://alycehealth-iezyg2o79-jungjaedev.vercel.app/
 
 - 배포 스크린 샷 - 검색결과가 나오지 않습니다.
   <img src='notion://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff2b6f763-9e13-4e50-bb25-8a1d9dbeb006%2F%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA_2022-09-26_%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE_5.45.43.png?table=block&id=845f1e71-cdf6-4961-8812-761d2c6f9779&spaceId=b913ab69-b9d5-449d-9c3f-5ce3e80307d2&width=2000&userId=9532ac57-72ac-4f70-9a6b-66f098f578f9&cache=v2' />
